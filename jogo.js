@@ -7,7 +7,7 @@ const blockWidth = width < 75 ? 20 : 14;
 const blockHeight = height < 75 ? 20 : 14;
 
 const start = { x: 0, y: 0 };
-const end = { x: width - 1, y: height - 1 };
+const end = { x: width - 1, y: height - 1};
 
 let finished = false;
 let moves = 0;
@@ -15,32 +15,12 @@ let movesEl = document.querySelector('#moves-span');
 let timeElement = document.querySelector('#time-span');
 let path = [start];
 let cells = [];
-let context;
 
 let chestImg = new Image();
 chestImg.src = 'heart.png'; 
 chestImg.onload = drawAll;
 
-function generateNewMaze() {
-  finished = false;
-  moves = 0;
-  if (movesEl) movesEl.innerHTML = moves;
 
-  path = [start];
-  setup();
-  resetTimer();
-  drawAll();
-}
-
-function resetMaze() {
-  finished = false;
-  moves = 0;
-  if (movesEl) movesEl.innerHTML = moves;
-
-  path = [start];
-  resetTimer();
-  drawAll();
-}
 
 function newMaze(x, y) {
   const totalCells = x * y;
@@ -176,9 +156,6 @@ function tryMove(direction) {
   }
 }
 
-function resetTimer() {
-  victoryModal.classList.add('hidden');
-}
 
 function win() {
   finished = true;
@@ -193,8 +170,7 @@ document.addEventListener("keyup", (e) => {
   if (e.key === "ArrowLeft") tryMove("left");
 });
 
-document.querySelector('#new-maze')?.addEventListener('click', generateNewMaze);
-document.querySelector('#reset-maze')?.addEventListener('click', resetMaze);
+
 
 setup();
 drawAll();
